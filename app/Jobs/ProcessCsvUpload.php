@@ -134,4 +134,12 @@ class ProcessCsvUpload implements ShouldQueue
 
     }
 
+    public function failed(\Throwable $e)
+    {
+        $this->upload->update([
+            'status' => 'failed',
+            'error_message' => $e->getMessage(),
+        ]);
+    }
+
 }
